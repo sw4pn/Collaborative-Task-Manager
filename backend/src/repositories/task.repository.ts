@@ -1,5 +1,10 @@
 import { prisma } from "../config/prisma-client";
-import { ICreateTaskInput, IPublicTask, IUpdateTaskInput } from "../types";
+import {
+  ICreateTaskInput,
+  IPublicTask,
+  ITasksFilterOptions,
+  IUpdateTaskInput,
+} from "../types";
 
 export class TaskRepository {
   async create(input: ICreateTaskInput): Promise<IPublicTask> {
@@ -22,9 +27,28 @@ export class TaskRepository {
     });
   }
 
-  async findAll(): Promise<IPublicTask[]> {
+  async findAll(options: ITasksFilterOptions = {}): Promise<IPublicTask[]> {
+    const {
+      status,
+      priority,
+      assignedToId,
+      creatorId,
+      overdue,
+      sortOrder = "asc",
+    } = options;
+
     return prisma.task.findMany({
-      orderBy: { dueDate: "asc" },
+      where: {
+        ...(status && { status }),
+        ...(priority && { priority }),
+        ...(assignedToId && { assignedToId }),
+        ...(creatorId && { creatorId }),
+        ...(overdue && {
+          dueDate: { lt: new Date() },
+          status: { not: "COMPLETED" },
+        }),
+      },
+      orderBy: { dueDate: sortOrder },
     });
   }
 

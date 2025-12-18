@@ -31,3 +31,28 @@ export interface IUpdateTaskInput {
   status?: ETaskStatus;
   assignedToId?: string | null;
 }
+
+export interface ITaskFilter {
+  status?: ETaskStatus;
+  priority?: ETaskPriority;
+  assignedToId?: string;
+  creatorId?: string;
+  overdue?: boolean;
+}
+
+export interface ITaskSort {
+  field: "dueDate";
+  order: "asc" | "desc";
+}
+
+export interface ITasksFilterOptions {
+  status?: ETaskStatus;
+  priority?: ETaskPriority;
+
+  assignedToId?: string;
+  creatorId?: string;
+
+  overdue?: boolean;
+
+  sortOrder?: "asc" | "desc";
+}

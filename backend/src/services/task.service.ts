@@ -1,5 +1,10 @@
 import { TaskRepository } from "../repositories/task.repository";
-import { ICreateTaskInput, IPublicTask, IUpdateTaskInput } from "../types";
+import {
+  ICreateTaskInput,
+  IPublicTask,
+  ITasksFilterOptions,
+  IUpdateTaskInput,
+} from "../types";
 import { AppError } from "../utils/errors/AppError";
 
 export class TaskService {
@@ -19,8 +24,8 @@ export class TaskService {
     return task;
   }
 
-  async getAllTasks() {
-    return this.taskRepository.findAll();
+  async getAllTasks(options: ITasksFilterOptions = {}) {
+    return this.taskRepository.findAll(options);
   }
 
   async updateTask(taskId: string, userId: string, data: IUpdateTaskInput) {
@@ -41,6 +46,6 @@ export class TaskService {
       throw new AppError("Forbidden", 403, "FORBIDDEN");
     }
 
-    return this.taskRepository.delete(taskId);
+    await this.taskRepository.delete(taskId);
   }
 }
