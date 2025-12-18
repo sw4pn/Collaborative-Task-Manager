@@ -1,33 +1,40 @@
 import { User } from "../generated/prisma/client";
 import { UserRepository } from "../repositories/user.repository";
-import { ICreateUserInput, IUpdateUserInput } from "../types";
+import { serializeUser } from "../serializers/user.serializer";
+import { ICreateUserInput, IPublicUser, IUpdateUserInput } from "../types";
 import { AppError } from "../utils/errors/AppError";
 import { AuthError } from "../utils/errors/AuthError";
 
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async createUser(userData: ICreateUserInput): Promise<User> {
-    return this.userRepository.createUser(userData);
+  async createUser(userData: ICreateUserInput): Promise<IPublicUser> {
+    const user = await this.userRepository.createUser(userData);
+    return serializeUser(user);
   }
 
-  async getUserById(userId: string): Promise<User> {
+  async getUserById(userId: string): Promise<IPublicUser> {
     const user = await this.userRepository.findUserById(userId);
     if (!user) {
       throw new AppError("User not found", 404, "USER_NOT_FOUND");
     }
 
-    return user;
+    return serializeUser(user);
   }
 
-  async getUserByEmail(email: string, isAuth: boolean = false): Promise<User> {
+  async getUserByEmail(email: string): Promise<IPublicUser> {
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
-      if (isAuth) {
-        throw new AuthError("Invalid email or password");
-      } else {
-        throw new AppError("User not found", 404, "USER_NOT_FOUND");
-      }
+      throw new AppError("User not found", 404, "USER_NOT_FOUND");
+    }
+
+    return serializeUser(user);
+  }
+
+  async getUserByEmailWithPassword(email: string): Promise<User> {
+    const user = await this.userRepository.findByEmail(email);
+    if (!user) {
+      throw new AuthError("Invalid email or password");
     }
 
     return user;
@@ -44,9 +51,10 @@ export class UserService {
   async updateUserProfile(
     userId: string,
     data: IUpdateUserInput
-  ): Promise<User> {
+  ): Promise<IPublicUser> {
     await this.getUserById(userId);
 
-    return this.userRepository.updateUser(userId, data);
+    const user = await this.userRepository.updateUser(userId, data);
+    return serializeUser(user);
   }
 }

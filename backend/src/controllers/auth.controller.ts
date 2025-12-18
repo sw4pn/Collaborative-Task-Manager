@@ -23,7 +23,10 @@ export class AuthController {
 
     TokenUtils.setAuthCookies(res, accessToken, refreshToken);
 
-    sendResponse(res, 200, true, "Login successful", userData);
+    sendResponse(res, 200, true, "Login successful", {
+      ...userData,
+      tokens: { accessToken, refreshToken },
+    });
   };
 
   logoutUser = async (_req: Request, res: Response) => {

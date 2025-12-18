@@ -4,15 +4,15 @@ import {
   ILoginResponse,
   IRegisterInput,
 } from "../types/auth.types";
-import { User } from "../generated/prisma/client";
 import { TokenUtils } from "../utils/token.utils";
 import { UserService } from "./user.service";
 import { AuthError } from "../utils/errors/AuthError";
+import { IPublicUser } from "../types";
 
 export class AuthService {
   constructor(private readonly userService: UserService) {}
 
-  async register(data: IRegisterInput): Promise<User> {
+  async register(data: IRegisterInput): Promise<IPublicUser> {
     await this.userService.checkForEmailAvailability(data.email);
 
     const passwordHash = await bcrypt.hash(data.password, 10);
@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   async login(data: ILoginInput): Promise<ILoginResponse> {
-    const user = await this.userService.getUserByEmail(data.email, true);
+    const user = await this.userService.getUserByEmailWithPassword(data.email);
 
     const isPasswordValid = await bcrypt.compare(
       data.password,
