@@ -1,4 +1,6 @@
+import { TaskAuditActions } from "../constants/task-audit.actions";
 import { NotificationRepository } from "../repositories/notification.repository";
+import { TaskAuditRepository } from "../repositories/task-audit.repository";
 import { TaskRepository } from "../repositories/task.repository";
 import { SocketGateway } from "../sockets/socket.gateway";
 import {
@@ -12,7 +14,8 @@ import { AppError } from "../utils/errors/AppError";
 export class TaskService {
   constructor(
     private readonly taskRepository: TaskRepository,
-    private readonly notificationRepository = new NotificationRepository()
+    private readonly notificationRepository = new NotificationRepository(),
+    private readonly auditRepository = new TaskAuditRepository()
   ) {}
 
   async createTask(data: ICreateTaskInput): Promise<IPublicTask> {
@@ -52,9 +55,33 @@ export class TaskService {
 
       await this.notificationRepository.create(data.assignedToId, message);
 
+      await this.auditRepository.log({
+        taskId,
+        userId,
+        action: TaskAuditActions.ASSIGNED,
+      });
+
       SocketGateway.emitTaskAssigned(data.assignedToId, {
         taskId: updatedTask.id,
         message,
+      });
+    }
+
+    // Status change
+    if (data.status && data.status !== task.status) {
+      await this.auditRepository.log({
+        taskId,
+        userId,
+        action: TaskAuditActions.STATUS_CHANGED,
+      });
+    }
+
+    // Priority change
+    if (data.priority && data.priority !== task.priority) {
+      await this.auditRepository.log({
+        taskId,
+        userId,
+        action: TaskAuditActions.PRIORITY_CHANGED,
       });
     }
 

@@ -1,0 +1,5 @@
+export const TaskAuditActions = {
+  STATUS_CHANGED: "STATUS_CHANGED",
+  ASSIGNED: "ASSIGNED",
+  PRIORITY_CHANGED: "PRIORITY_CHANGED",
+} as const;
