@@ -38,8 +38,11 @@ export class AuthService {
     const tokens = TokenUtils.issueTokens(user.id);
 
     return {
-      email: user.email,
-      name: user.name,
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+      },
       accessToken: tokens.accessToken,
       refreshToken: tokens.refreshToken,
     };

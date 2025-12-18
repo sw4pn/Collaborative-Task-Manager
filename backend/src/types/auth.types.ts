@@ -22,8 +22,11 @@ export interface ILoginInput {
 }
 
 export interface ILoginResponse {
-  email: string;
-  name: string;
+  user: {
+    id: string;
+    email: string;
+    name: string;
+  };
   accessToken: string;
   refreshToken: string;
 }
