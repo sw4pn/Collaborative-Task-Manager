@@ -1,6 +1,8 @@
 import { User } from "../generated/prisma/client";
 import { UserRepository } from "../repositories/user.repository";
 import { ICreateUserInput, IUpdateUserInput } from "../types";
+import { AppError } from "../utils/errors/AppError";
+import { AuthError } from "../utils/errors/AuthError";
 
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
@@ -12,7 +14,7 @@ export class UserService {
   async getUserById(userId: string): Promise<User> {
     const user = await this.userRepository.findUserById(userId);
     if (!user) {
-      throw new Error("User not found");
+      throw new AppError("User not found", 404, "USER_NOT_FOUND");
     }
 
     return user;
@@ -21,7 +23,11 @@ export class UserService {
   async getUserByEmail(email: string, isAuth: boolean = false): Promise<User> {
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
-      throw new Error(isAuth ? "Invalid email or password" : "User not found");
+      if (isAuth) {
+        throw new AuthError("Invalid email or password");
+      } else {
+        throw new AppError("User not found", 404, "USER_NOT_FOUND");
+      }
     }
 
     return user;
@@ -31,7 +37,7 @@ export class UserService {
     const existingUser = await this.userRepository.findByEmail(email);
 
     if (existingUser) {
-      throw new Error("Email already in use");
+      throw new AppError("Email already in use", 409, "EMAIL_ALREADY_EXISTS");
     }
   }
 

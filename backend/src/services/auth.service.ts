@@ -7,6 +7,7 @@ import {
 import { User } from "../generated/prisma/client";
 import { TokenUtils } from "../utils/token.utils";
 import { UserService } from "./user.service";
+import { AuthError } from "../utils/errors/AuthError";
 
 export class AuthService {
   constructor(private readonly userService: UserService) {}
@@ -32,7 +33,7 @@ export class AuthService {
     );
 
     if (!isPasswordValid) {
-      throw new Error("Invalid email or password");
+      throw new AuthError("Invalid email or password");
     }
 
     const tokens = TokenUtils.issueTokens(user.id);

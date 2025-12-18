@@ -20,7 +20,7 @@ const sendResponse = <T>(
   const response: ApiResponse<T> = {
     success,
     message,
-    ...(!data !== undefined && { data }),
+    ...(data !== undefined && { data }),
   };
 
   return res.status(statusCode).json(response);
