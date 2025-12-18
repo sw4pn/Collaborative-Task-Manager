@@ -52,3 +52,8 @@ export type Task = Prisma.TaskModel
  * 
  */
 export type TaskAuditLog = Prisma.TaskAuditLogModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel

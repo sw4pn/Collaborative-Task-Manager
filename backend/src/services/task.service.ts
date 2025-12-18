@@ -1,4 +1,6 @@
+import { NotificationRepository } from "../repositories/notification.repository";
 import { TaskRepository } from "../repositories/task.repository";
+import { SocketGateway } from "../sockets/socket.gateway";
 import {
   ICreateTaskInput,
   IPublicTask,
@@ -8,7 +10,10 @@ import {
 import { AppError } from "../utils/errors/AppError";
 
 export class TaskService {
-  constructor(private readonly taskRepository: TaskRepository) {}
+  constructor(
+    private readonly taskRepository: TaskRepository,
+    private readonly notificationRepository = new NotificationRepository()
+  ) {}
 
   async createTask(data: ICreateTaskInput): Promise<IPublicTask> {
     return this.taskRepository.create(data);
@@ -36,7 +41,24 @@ export class TaskService {
       throw new AppError("Forbidden", 403, "FORBIDDEN");
     }
 
-    return this.taskRepository.update(taskId, data);
+    const updatedTask = await this.taskRepository.update(taskId, data);
+
+    // Real-Time update
+    SocketGateway.emitTaskUpdated(updatedTask);
+
+    // notification on assignment change
+    if (data.assignedToId && data.assignedToId !== task.assignedToId) {
+      const message = `You have been assigned a new task: ${updatedTask.title}`;
+
+      await this.notificationRepository.create(data.assignedToId, message);
+
+      SocketGateway.emitTaskAssigned(data.assignedToId, {
+        taskId: updatedTask.id,
+        message,
+      });
+    }
+
+    return updatedTask;
   }
 
   async deleteTask(taskId: string, userId: string) {

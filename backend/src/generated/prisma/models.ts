@@ -11,4 +11,5 @@
 export type * from './models/User'
 export type * from './models/Task'
 export type * from './models/TaskAuditLog'
+export type * from './models/Notification'
 export type * from './commonInputTypes'

@@ -192,6 +192,7 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   createdTasks?: Prisma.TaskListRelationFilter
   assignedTasks?: Prisma.TaskListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
   taskAuditLogs?: Prisma.TaskAuditLogListRelationFilter
 }
 
@@ -204,6 +205,7 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   createdTasks?: Prisma.TaskOrderByRelationAggregateInput
   assignedTasks?: Prisma.TaskOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
   taskAuditLogs?: Prisma.TaskAuditLogOrderByRelationAggregateInput
 }
 
@@ -219,6 +221,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   createdTasks?: Prisma.TaskListRelationFilter
   assignedTasks?: Prisma.TaskListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
   taskAuditLogs?: Prisma.TaskAuditLogListRelationFilter
 }, "id" | "email">
 
@@ -255,6 +258,7 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatorInput
   assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssignedToInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   taskAuditLogs?: Prisma.TaskAuditLogCreateNestedManyWithoutUserInput
 }
 
@@ -267,6 +271,7 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatorInput
   assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedToInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   taskAuditLogs?: Prisma.TaskAuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -279,6 +284,7 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdTasks?: Prisma.TaskUpdateManyWithoutCreatorNestedInput
   assignedTasks?: Prisma.TaskUpdateManyWithoutAssignedToNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   taskAuditLogs?: Prisma.TaskAuditLogUpdateManyWithoutUserNestedInput
 }
 
@@ -291,6 +297,7 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatorNestedInput
   assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedToNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   taskAuditLogs?: Prisma.TaskAuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -410,6 +417,20 @@ export type UserUpdateOneRequiredWithoutTaskAuditLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTaskAuditLogsInput, Prisma.UserUpdateWithoutTaskAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutTaskAuditLogsInput>
 }
 
+export type UserCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.UserUpsertWithoutNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+}
+
 export type UserCreateWithoutCreatedTasksInput = {
   id?: string
   email: string
@@ -418,6 +439,7 @@ export type UserCreateWithoutCreatedTasksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssignedToInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   taskAuditLogs?: Prisma.TaskAuditLogCreateNestedManyWithoutUserInput
 }
 
@@ -429,6 +451,7 @@ export type UserUncheckedCreateWithoutCreatedTasksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedToInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   taskAuditLogs?: Prisma.TaskAuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -445,6 +468,7 @@ export type UserCreateWithoutAssignedTasksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   taskAuditLogs?: Prisma.TaskAuditLogCreateNestedManyWithoutUserInput
 }
 
@@ -456,6 +480,7 @@ export type UserUncheckedCreateWithoutAssignedTasksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   taskAuditLogs?: Prisma.TaskAuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -483,6 +508,7 @@ export type UserUpdateWithoutCreatedTasksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedTasks?: Prisma.TaskUpdateManyWithoutAssignedToNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   taskAuditLogs?: Prisma.TaskAuditLogUpdateManyWithoutUserNestedInput
 }
 
@@ -494,6 +520,7 @@ export type UserUncheckedUpdateWithoutCreatedTasksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedToNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   taskAuditLogs?: Prisma.TaskAuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -516,6 +543,7 @@ export type UserUpdateWithoutAssignedTasksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdTasks?: Prisma.TaskUpdateManyWithoutCreatorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   taskAuditLogs?: Prisma.TaskAuditLogUpdateManyWithoutUserNestedInput
 }
 
@@ -527,6 +555,7 @@ export type UserUncheckedUpdateWithoutAssignedTasksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   taskAuditLogs?: Prisma.TaskAuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -539,6 +568,7 @@ export type UserCreateWithoutTaskAuditLogsInput = {
   updatedAt?: Date | string
   createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatorInput
   assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssignedToInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTaskAuditLogsInput = {
@@ -550,6 +580,7 @@ export type UserUncheckedCreateWithoutTaskAuditLogsInput = {
   updatedAt?: Date | string
   createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatorInput
   assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedToInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTaskAuditLogsInput = {
@@ -577,6 +608,7 @@ export type UserUpdateWithoutTaskAuditLogsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdTasks?: Prisma.TaskUpdateManyWithoutCreatorNestedInput
   assignedTasks?: Prisma.TaskUpdateManyWithoutAssignedToNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskAuditLogsInput = {
@@ -588,6 +620,71 @@ export type UserUncheckedUpdateWithoutTaskAuditLogsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatorNestedInput
   assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedToNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutNotificationsInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatorInput
+  assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssignedToInput
+  taskAuditLogs?: Prisma.TaskAuditLogCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatorInput
+  assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedToInput
+  taskAuditLogs?: Prisma.TaskAuditLogUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+}
+
+export type UserUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type UserUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdTasks?: Prisma.TaskUpdateManyWithoutCreatorNestedInput
+  assignedTasks?: Prisma.TaskUpdateManyWithoutAssignedToNestedInput
+  taskAuditLogs?: Prisma.TaskAuditLogUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatorNestedInput
+  assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedToNestedInput
+  taskAuditLogs?: Prisma.TaskAuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -598,12 +695,14 @@ export type UserUncheckedUpdateWithoutTaskAuditLogsInput = {
 export type UserCountOutputType = {
   createdTasks: number
   assignedTasks: number
+  notifications: number
   taskAuditLogs: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   createdTasks?: boolean | UserCountOutputTypeCountCreatedTasksArgs
   assignedTasks?: boolean | UserCountOutputTypeCountAssignedTasksArgs
+  notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   taskAuditLogs?: boolean | UserCountOutputTypeCountTaskAuditLogsArgs
 }
 
@@ -634,6 +733,13 @@ export type UserCountOutputTypeCountAssignedTasksArgs<ExtArgs extends runtime.Ty
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountTaskAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.TaskAuditLogWhereInput
 }
@@ -648,6 +754,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   createdTasks?: boolean | Prisma.User$createdTasksArgs<ExtArgs>
   assignedTasks?: boolean | Prisma.User$assignedTasksArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   taskAuditLogs?: boolean | Prisma.User$taskAuditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -683,6 +790,7 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   createdTasks?: boolean | Prisma.User$createdTasksArgs<ExtArgs>
   assignedTasks?: boolean | Prisma.User$assignedTasksArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   taskAuditLogs?: boolean | Prisma.User$taskAuditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -694,6 +802,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     createdTasks: Prisma.$TaskPayload<ExtArgs>[]
     assignedTasks: Prisma.$TaskPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
     taskAuditLogs: Prisma.$TaskAuditLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1099,6 +1208,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   createdTasks<T extends Prisma.User$createdTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignedTasks<T extends Prisma.User$assignedTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   taskAuditLogs<T extends Prisma.User$taskAuditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$taskAuditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskAuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1568,6 +1678,30 @@ export type User$assignedTasksArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.TaskScalarFieldEnum | Prisma.TaskScalarFieldEnum[]
+}
+
+/**
+ * User.notifications
+ */
+export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**
