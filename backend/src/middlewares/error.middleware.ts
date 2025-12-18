@@ -3,6 +3,7 @@ import { AppError } from "../utils/errors/AppError";
 import { ZodError } from "zod";
 import sendResponse from "../utils/send-response";
 import config from "../config/config";
+import { formatZodError } from "../utils/errors/zodErrorFormatter";
 
 export const errorHandler = (
   err: unknown,
@@ -15,10 +16,10 @@ export const errorHandler = (
     path: req.originalUrl,
   };
 
-  // Validation Error
+  // Zod Validation Error
   if (err instanceof ZodError) {
     return sendResponse(res, 400, false, "Validation Error", {
-      errors: err.issues,
+      errors: formatZodError(err),
       ...requestInfo,
     });
   }
