@@ -1,9 +1,5 @@
 import bcrypt from "bcrypt";
-import {
-  ILoginInput,
-  ILoginResponse,
-  IRegisterInput,
-} from "../types/auth.types";
+import { ILoginInput, ILoginResponse, IRegisterInput } from "../types";
 import { TokenUtils } from "../utils/token.utils";
 import { UserService } from "./user.service";
 import { AuthError } from "../utils/errors/AuthError";

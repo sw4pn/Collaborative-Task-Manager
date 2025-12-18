@@ -765,30 +765,30 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'TaskPriority'
+ * Reference to a field of type 'ETaskPriority'
  */
-export type EnumTaskPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskPriority'>
+export type EnumETaskPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ETaskPriority'>
     
 
 
 /**
- * Reference to a field of type 'TaskPriority[]'
+ * Reference to a field of type 'ETaskPriority[]'
  */
-export type ListEnumTaskPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskPriority[]'>
+export type ListEnumETaskPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ETaskPriority[]'>
     
 
 
 /**
- * Reference to a field of type 'TaskStatus'
+ * Reference to a field of type 'ETaskStatus'
  */
-export type EnumTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskStatus'>
+export type EnumETaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ETaskStatus'>
     
 
 
 /**
- * Reference to a field of type 'TaskStatus[]'
+ * Reference to a field of type 'ETaskStatus[]'
  */
-export type ListEnumTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskStatus[]'>
+export type ListEnumETaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ETaskStatus[]'>
     
 
 

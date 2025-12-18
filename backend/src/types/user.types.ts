@@ -9,10 +9,10 @@ export interface IUpdateUserInput {
   passwordHash?: string;
 }
 
-export type IPublicUser = {
+export interface IPublicUser {
   id: string;
   email: string;
   name: string;
   createdAt: Date;
   updatedAt: Date;
-};
+}

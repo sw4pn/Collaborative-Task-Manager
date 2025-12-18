@@ -9,21 +9,21 @@
 * 🟢 You can import this file directly.
 */
 
-export const TaskPriority = {
+export const ETaskPriority = {
   LOW: 'LOW',
   MEDIUM: 'MEDIUM',
   HIGH: 'HIGH',
   URGENT: 'URGENT'
 } as const
 
-export type TaskPriority = (typeof TaskPriority)[keyof typeof TaskPriority]
+export type ETaskPriority = (typeof ETaskPriority)[keyof typeof ETaskPriority]
 
 
-export const TaskStatus = {
+export const ETaskStatus = {
   TODO: 'TODO',
   IN_PROGRESS: 'IN_PROGRESS',
   REVIEW: 'REVIEW',
   COMPLETED: 'COMPLETED'
 } as const
 
-export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]
+export type ETaskStatus = (typeof ETaskStatus)[keyof typeof ETaskStatus]

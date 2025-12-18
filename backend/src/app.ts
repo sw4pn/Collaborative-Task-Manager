@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
+import taskRoutes from "./routes/task.routes";
 import { notFoundHandler } from "./middlewares/not-found.middleware";
 import { errorHandler } from "./middlewares/error.middleware";
 
@@ -12,12 +13,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10mb" }));
 
 // Routes
-app.get("/", (_, res) => {
-  res.send("Hello World!");
-});
+app.get("/", (_, res) => res.send("Hello World!"));
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/tasks", taskRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

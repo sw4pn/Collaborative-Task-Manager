@@ -17,14 +17,14 @@ datasource db {
 // ENUMS
 // =======================
 
-enum TaskPriority {
+enum ETaskPriority {
   LOW
   MEDIUM
   HIGH
   URGENT
 }
 
-enum TaskStatus {
+enum ETaskStatus {
   TODO
   IN_PROGRESS
   REVIEW
@@ -57,8 +57,8 @@ model Task {
   title          String        @db.VarChar(100)
   description    String
   dueDate        DateTime
-  priority       TaskPriority
-  status         TaskStatus
+  priority       ETaskPriority
+  status         ETaskStatus
 
   creatorId      String
   assignedToId   String?

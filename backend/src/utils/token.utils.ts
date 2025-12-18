@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import type { CookieOptions } from "express";
 import config from "../config/config";
-import { IJwtTokenPayload } from "../types/auth.types";
+import { IJwtTokenPayload } from "../types";
 
 const ACCESS_TOKEN_TTL = 3 * 60 * 60; // 3 hours
 const REFRESH_TOKEN_TTL = 7 * 24 * 60 * 60; // 7 days
