@@ -5,8 +5,8 @@ The app allows users to securely create, assign, track, and collaborate on tasks
 
 ## 🚀 Live Demo
 
-- **Frontend**: _<TODO: add frontend_url>_
-- **Backend API**: _<TODO: add backend_url>_
+- **Frontend**: _https://c-task-manager.netlify.app/_
+- **Backend API**: _https://collaborative-task-manager-qsm4.onrender.com/_
 
 ---
 
@@ -139,3 +139,32 @@ cd backend
 npm test
 
 ```
+
+## 🧠 Architecture & Design Decisions
+
+- The backend follows a **layered architecture**:
+
+  - **Controllers** handle HTTP requests and responses
+  - **Services** contain business logic and authorization rules
+  - **Repositories** handle database access using Prisma
+
+- **JWT-based authentication** is used for stateless session management.
+
+  - Tokens are verified on each request
+  - User existence is revalidated to prevent stale sessions
+
+- **Prisma ORM** was chosen for type-safe database access and reliable migrations.
+
+## 🔄 Real-Time Communication (Socket.io)
+
+Socket.io is used to enable real-time collaboration features:
+
+- Task updates (status, priority, assignee) are broadcast to all connected clients
+- Users receive instant notifications when a task is assigned to them
+- The backend emits socket events from the service layer after successful database updates
+
+## ⚠️ Trade-offs & Assumptions
+
+- JWT authentication is implemented without refresh token rotation for simplicity
+- Database migrations are run manually in development and automatically in production
+- Socket authentication assumes a valid JWT at connection time
