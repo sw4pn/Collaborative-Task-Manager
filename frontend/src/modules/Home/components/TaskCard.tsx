@@ -24,7 +24,7 @@ export const TaskCard = ({ task }: TaskCardProps) => {
 
   return (
     <div className="border rounded-lg p-4 space-y-3 bg-white">
-      <div className="flex justify-between items-start">
+      <div className="flex justify-between flex-wrap items-start">
         <h3 className="font-semibold">{task.title}</h3>
 
         <Badge className={priorityColor[task.priority]}>{task.priority}</Badge>
@@ -32,10 +32,10 @@ export const TaskCard = ({ task }: TaskCardProps) => {
 
       <p className="text-sm text-muted-foreground">{task.description}</p>
 
-      <div className="flex justify-between items-center text-sm text-slate-600">
+      <div className="flex justify-between flex-wrap gap-y-2 items-center text-sm text-slate-600">
         <div>
           Status:{" "}
-          <span className="border px-2 py-1 rounded-lg ml-2 text-slate-700 font-medium">
+          <span className="border px-2 py-1 rounded-lg ml-2 text-slate-700 font-medium mt-2 inline-block sm:inline sm:mt-0">
             {" "}
             {task.status}
           </span>

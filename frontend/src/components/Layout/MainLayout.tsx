@@ -23,7 +23,7 @@ const MainLayout = () => {
           Developed with ReactJs+Vite, TailwindCSS & ShadcnUI
         </div>
         <div className="">
-          by: Swapnil Andhale |{" "}
+          &copy; Swapnil Andhale |{" "}
           <a
             href="https://github.com/sw4pn"
             className="underline text-blue-600"

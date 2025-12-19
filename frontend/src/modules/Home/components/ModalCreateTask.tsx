@@ -118,7 +118,7 @@ export const ModalCreateTask = () => {
           </div>
 
           {/* Priority + Assign */}
-          <div className="flex justify-between gap-4">
+          <div className="flex justify-between flex-wrap gap-4">
             <div className="w-full">
               <Label>Priority</Label>
               <Select
@@ -166,7 +166,7 @@ export const ModalCreateTask = () => {
             <Button
               type="submit"
               disabled={mutation.isPending}
-              className="ml-4"
+              className="sm:ml-4"
             >
               {mutation.isPending ? "Creating..." : "Create Task"}
             </Button>

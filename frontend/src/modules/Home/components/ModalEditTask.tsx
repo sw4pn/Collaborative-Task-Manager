@@ -24,6 +24,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import toast from "react-hot-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Props {
   task: ITask;
@@ -80,7 +81,7 @@ export const ModalEditTask = ({ task, open, onOpenChange }: Props) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
-        <DialogHeader>
+        <DialogHeader className="mb-2">
           <DialogTitle>Edit Task</DialogTitle>
         </DialogHeader>
 
@@ -98,7 +99,8 @@ export const ModalEditTask = ({ task, open, onOpenChange }: Props) => {
 
           <div>
             <Label>Description</Label>
-            <Input {...form.register("description")} disabled={!isCreator} />
+            {/* <Input {...form.register("description")} disabled={!isCreator} /> */}
+            <Textarea {...form.register("description")} disabled={!isCreator} />
           </div>
 
           <div>
@@ -110,7 +112,7 @@ export const ModalEditTask = ({ task, open, onOpenChange }: Props) => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             {/* Priority */}
             <div>
               <Label>Priority</Label>
@@ -180,7 +182,7 @@ export const ModalEditTask = ({ task, open, onOpenChange }: Props) => {
           <Button
             type="submit"
             disabled={!isCreator || mutation.isPending}
-            className="w-full"
+            className="w-full mt-4"
           >
             {mutation.isPending ? "Saving..." : "Save Changes"}
           </Button>
