@@ -2,6 +2,11 @@ import { getIO } from "./socket";
 import { SocketEvents } from "./socket-events";
 
 export const SocketGateway = {
+  emitTaskCreated(task: any) {
+    const io = getIO();
+    io.emit(SocketEvents.TASK_CREATED, task);
+  },
+
   emitTaskUpdated(task: any) {
     const io = getIO();
     io.emit(SocketEvents.TASK_UPDATED, task);
@@ -9,6 +14,6 @@ export const SocketGateway = {
 
   emitTaskAssigned(userId: string, payload: any) {
     const io = getIO();
-    io.to(userId).emit(SocketEvents.TASK_ASSIGNED, payload);
+    io.to(`user:${userId}`).emit(SocketEvents.TASK_ASSIGNED, payload);
   },
 };

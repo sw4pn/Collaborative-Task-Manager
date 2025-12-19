@@ -7,6 +7,6 @@ const server = http.createServer(app);
 
 initSocket(server);
 
-app.listen(config.PORT, () => {
+server.listen(config.PORT, () => {
   console.log(`🚀 Server is running at ${config.URL}:${config.PORT}`);
 });

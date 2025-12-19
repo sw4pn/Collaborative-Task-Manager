@@ -19,7 +19,27 @@ export class TaskService {
   ) {}
 
   async createTask(data: ICreateTaskInput): Promise<IPublicTask> {
-    return this.taskRepository.create(data);
+    const task = await this.taskRepository.create(data);
+
+    SocketGateway.emitTaskCreated(task);
+
+    if (task.assignedToId && task.assignedToId !== data.creatorId) {
+      const message = `You have been assigned a new task: ${task.title}`;
+
+      await this.notificationRepository.create(task.assignedToId, message);
+
+      await this.auditRepository.log({
+        taskId: task.id,
+        userId: data.creatorId,
+        action: TaskAuditActions.ASSIGNED,
+      });
+
+      SocketGateway.emitTaskAssigned(task.assignedToId, {
+        taskId: task.id,
+        message,
+      });
+    }
+    return task;
   }
 
   async getTaskById(taskId: string) {

@@ -16,12 +16,10 @@ export const initSocket = (server: http.Server) => {
 
   io.on("connection", (socket) => {
     const userId = socket.data.userId;
-    socket.join(userId);
-
-    console.log(`User connected: ${userId}`);
+    socket.join(`user:${userId}`);
 
     socket.on("disconnect", () => {
-      console.log(`User disconnected: ${userId}`);
+      console.log(`Socket disconnected: ${socket.id} user: ${userId}`);
     });
   });
 
