@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import AuthLayout from "./AuthLayout";
 import AuthCard from "./components/AuthCard";
-import { registerSchema, type RegisterInput } from "./schemas/auth.schema";
+import { registerSchema, type RegisterInput } from "../../schemas/auth.schema";
 import { registerUser } from "./services/auth.api";
 import toast from "react-hot-toast";
 

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/use-auth";
 import AuthLayout from "./AuthLayout";
 import AuthCard from "./components/AuthCard";
-import { loginSchema, type LoginInput } from "./schemas/auth.schema";
+import { loginSchema, type LoginInput } from "../../schemas/auth.schema";
 import { loginUser } from "./services/auth.api";
 import toast from "react-hot-toast";
 
@@ -63,12 +63,6 @@ const Login = () => {
           >
             {mutation.isPending ? "Logging in..." : "Login"}
           </Button>
-
-          {/* {mutation.isError && (
-            <p className="text-sm text-red-500 text-center">
-              {(mutation.error as any)?.message || "Login failed"}
-            </p>
-          )} */}
 
           <p className="text-sm text-slate-500 text-center">
             Don’t have an account?{" "}
