@@ -1,8 +1,10 @@
 import { type ReactNode, useState } from "react";
 import { AuthContext } from "./auth-context";
 import type { IUser } from "@/types";
+import { useNavigate } from "react-router";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const navigate = useNavigate();
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
   );
@@ -21,6 +23,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setToken(null);
     setUser(null);
     localStorage.clear();
+    navigate("/login");
   };
 
   return (
