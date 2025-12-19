@@ -57,4 +57,9 @@ export class UserService {
     const user = await this.userRepository.updateUser(userId, data);
     return serializeUser(user);
   }
+
+  async getAllAssignees(userId: string): Promise<IPublicUser[]> {
+    const assignees = await this.userRepository.findAllAssignees(userId);
+    return assignees.map(serializeUser);
+  }
 }

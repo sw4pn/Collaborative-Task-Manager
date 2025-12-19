@@ -30,4 +30,15 @@ export class UserRepository {
       data: updateData,
     });
   }
+
+  async findAllAssignees(excludeUserId: string): Promise<User[]> {
+    return prisma.user.findMany({
+      where: {
+        id: { not: excludeUserId },
+      },
+      orderBy: {
+        name: "asc",
+      },
+    });
+  }
 }

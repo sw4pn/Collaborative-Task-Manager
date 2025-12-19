@@ -16,6 +16,7 @@ const userController = new UserController(userService);
 /**
  * User routes
  */
+router.get("/assignee", requireAuth, userController.getAllAssignees);
 router.get("/profile", requireAuth, userController.getSelfProfile);
 router.put("/profile", requireAuth, userController.updateUserProfile);
 

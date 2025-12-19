@@ -30,4 +30,18 @@ export class UserController {
 
     sendResponse(res, 200, true, "Profile updated successfully", user);
   };
+
+  getAllAssignees = async (req: Request, res: Response) => {
+    const userId = req.user!.id;
+
+    const tasks = await this.userService.getAllAssignees(userId);
+
+    return sendResponse(
+      res,
+      200,
+      true,
+      "Assignees fetched successfully",
+      tasks
+    );
+  };
 }
