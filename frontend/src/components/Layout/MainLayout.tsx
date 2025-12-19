@@ -1,12 +1,17 @@
 import { Outlet } from "react-router";
+import UserMenu from "./UserMenu";
 
 const MainLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="flex items-center justify-center border-b shadow-lg bg-slate-200 border-slate-400">
-        <h1 className="py-10 text-lg p-2 font-bold sm:text-2xl font-mont text-slate-700">
-          Collaborative Task Management Application
-        </h1>
+      <header className="border-b bg-slate-200 border-slate-400 shadow-sm py-4">
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
+          <h1 className="text-lg sm:text-2xl font-bold text-slate-700">
+            Collaborative Task Management
+          </h1>
+
+          <UserMenu />
+        </div>
       </header>
 
       <main className="flex-1 p-4">
@@ -29,7 +34,7 @@ const MainLayout = () => {
           </a>{" "}
           |{" "}
           <a
-            href="https://www.linkedin.com/in/swapnil-andhale-9829a5184/"
+            href="https://www.linkedin.com/in/swapnil-andhale/"
             target="_blank"
             rel="noreferrer"
             className="underline text-blue-600"

@@ -31,8 +31,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     navigate("/login");
   };
 
+  const setUserState = (user: IUser) => {
+    setUser(user);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, token, login, logout, setUser: setUserState }}
+    >
       {children}
     </AuthContext.Provider>
   );

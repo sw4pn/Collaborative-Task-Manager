@@ -80,7 +80,7 @@ export const ModalCreateTask = () => {
       </DialogTrigger>
 
       <DialogContent>
-        <DialogHeader>
+        <DialogHeader className="mb-4">
           <DialogTitle>Create Task</DialogTitle>
           <DialogDescription>
             Fill in the details below to create a new task.

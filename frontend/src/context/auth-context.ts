@@ -6,6 +6,7 @@ export type AuthContextType = {
   token: string | null;
   login: (token: string, user: IUser) => void;
   logout: () => void;
+  setUser: (user: IUser) => void;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(
