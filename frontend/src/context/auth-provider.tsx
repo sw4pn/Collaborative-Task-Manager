@@ -2,6 +2,7 @@ import { type ReactNode, useState } from "react";
 import { AuthContext } from "./auth-context";
 import type { IUser } from "@/types";
 import { useNavigate } from "react-router";
+import { socket } from "@/lib/socket";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
@@ -17,9 +18,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(user);
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
+
+    socket.auth = { token };
+    socket.connect();
   };
 
   const logout = () => {
+    socket.disconnect();
     setToken(null);
     setUser(null);
     localStorage.clear();

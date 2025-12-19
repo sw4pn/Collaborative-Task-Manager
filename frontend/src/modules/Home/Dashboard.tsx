@@ -4,8 +4,11 @@ import { ModalCreateTask } from "./components/ModalCreateTask";
 import { TaskFilters } from "./components/TaskFilters";
 import { TaskList } from "./components/TaskList";
 import type { ITaskFiltersState } from "@/types";
+import { useSocketEvents } from "@/hooks/useSocketEvent";
 
 const Dashboard = () => {
+  useSocketEvents();
+
   const [filters, setFilters] = useState<ITaskFiltersState>({
     view: "assigned",
     status: "",
