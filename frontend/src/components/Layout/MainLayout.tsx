@@ -5,7 +5,7 @@ const MainLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b bg-slate-200 border-slate-400 shadow-sm py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2 flex-wrap gap-y-2 gap-x-4">
           <h1 className="text-lg sm:text-2xl font-bold text-slate-700">
             Collaborative Task Management
           </h1>

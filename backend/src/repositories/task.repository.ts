@@ -49,6 +49,15 @@ export class TaskRepository {
         }),
       },
       orderBy: { dueDate: sortOrder },
+      include: {
+        assignedTo: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+      },
     });
   }
 
