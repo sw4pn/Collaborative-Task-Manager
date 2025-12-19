@@ -86,18 +86,22 @@ cp frontend/.env.example frontend/.env
 ### 1️⃣ Start all services
 
 ```bash
-docker compose up --build
+docker compose up -d --build
 ```
-
-- Frontend → http://localhost:3000
-
-- Backend → http://localhost:8000
 
 ### 2️⃣ Initialize database (first run only)
 
 ```bash
 docker exec -it task_manager_backend npm run db:init
 ```
+
+### 3️⃣ Access Services At
+
+- Frontend → http://localhost:3000
+
+- Backend → http://localhost:8000
+
+---
 
 ## ⚙️ Run Manually (Without Docker)
 
