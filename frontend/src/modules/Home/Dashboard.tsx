@@ -16,8 +16,8 @@ const Dashboard = () => {
   const { data, isLoading } = useTasks(filters);
 
   return (
-    <div className="max-w-5xl mx-auto p-6 space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="max-w-5xl mx-auto md:p-6 space-y-6">
+      <div className="flex justify-between items-center flex-wrap gap-4">
         <h1 className="text-2xl font-bold">My Tasks</h1>
         <ModalCreateTask />
       </div>
