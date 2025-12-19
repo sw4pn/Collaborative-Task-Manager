@@ -76,6 +76,13 @@ The app allows users to securely create, assign, track, and collaborate on tasks
 
 ## 🐳 Run with Docker (Recommended)
 
+### 0️⃣ Prerequisite: Setup .env
+
+```bash
+cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env
+```
+
 ### 1️⃣ Start all services
 
 ```bash
@@ -99,7 +106,6 @@ docker exec -it task_manager_backend npm run db:init
 ```bash
 cd backend
 npm install
-cp .env.example .env
 npx prisma migrate dev
 npm run dev
 
