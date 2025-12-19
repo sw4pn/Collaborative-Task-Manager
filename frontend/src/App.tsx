@@ -1,11 +1,8 @@
 import "./App.css";
+import AppRoutes from "./components/routes";
 
 function App() {
-  return (
-    <>
-      <div className="bg-red-700">Hello World!</div>
-    </>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
